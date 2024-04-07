@@ -1,0 +1,2 @@
+[myEC2]
+54.134.182.134 ansible_ssh_private_key_file=/home/ubuntu/ansible/keys/myEC2.pem
