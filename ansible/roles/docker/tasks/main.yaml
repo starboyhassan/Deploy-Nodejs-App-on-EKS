@@ -1,0 +1,24 @@
+# install docker
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Change ownership of docker.sock
+      file:
+        path: /var/run/docker.sock
+        owner: root
+        group: docker
+        state: touch
+
+    - name: change docker.sock file permissions
+      file:
+        path: /var/run/docker.sock
+        mode: "0666"
+
+    - name: restart docker
+      service:
+        name: '{{ item }}'
+        state: restarted
+      loop:
+        - docker

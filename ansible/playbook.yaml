@@ -1,0 +1,6 @@
+---
+- name: install and configure Docker and on EC2 instance
+  hosts: myEC2
+  roles:
+    - docker
+
