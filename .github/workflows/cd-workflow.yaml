@@ -19,3 +19,8 @@ jobs:
           run: |
             docker pull mahmoudhassan9/nodejs-app:${{ github.sha }}
             export DOCKER_IMAGE_SHA=$(docker inspect --format='{{index .RepoDigests 0}}' mahmoudhassan9/nodejs-app:${{ github.sha }} | awk -F'@' '{print $2}')
+
+        - name: Update Deployment YAML with new tag
+          run: |
+              sed -i "s|image: mahmoudhassan9/nodejs-app:[a-zA-Z0-9]*|image: mahmoudhassan9/nodejs-app:${DOCKER_IMAGE_SHA}|g" deployment-service.yml
+    
