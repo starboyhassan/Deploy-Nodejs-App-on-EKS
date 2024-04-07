@@ -1,0 +1,31 @@
+# install NodeJS 16 and npm
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install prerequisites
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - curl
+        - gnupg
+
+    - name: Add Node.js 16.x repository
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_16.x {{ ansible_distribution_release }} main"
+        state: present
+        update_cache: yes
+        filename: 'nodesource'
+
+    - name: Add Node.js 16.x repository GPG key
+      apt_key:
+        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+        state: present
+
+    - name: Install Node.js 16 and npm
+      apt:
+        name: nodejs
+        state: present
+

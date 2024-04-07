@@ -5,7 +5,7 @@
     - docker
 
 - name: Install and configure SonarQube
-  hosts: sonarqube-server
+  hosts: myEC2
   vars:
     arch_mapping:  # Map ansible architecture {{ ansible_architecture }} names to Docker's architecture names
       x86_64: amd64
@@ -13,3 +13,7 @@
   roles:
     - sonarqube
 
+- name: install Nodejs 16 and on EC2 instance
+  hosts: myEC2
+  roles:
+    - nodejs16
