@@ -6,7 +6,6 @@ on:
 
 
 jobs:
-  
   build-analyze-push:
     name: Build
     runs-on: [self-hosted]
@@ -16,3 +15,9 @@ jobs:
         with:
           fetch-depth: 0  
 
+      - name: Build and analyze with SonarQube
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+                
