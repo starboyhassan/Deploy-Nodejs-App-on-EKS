@@ -22,3 +22,13 @@
   hosts: myEC2
   roles:
     - terraform
+
+- name: install AWS CLI
+  hosts: myEC2
+  roles:
+    - aws_cli
+
+- name: install kubectl
+  hosts: myEC2
+  roles:
+    - kubectl
