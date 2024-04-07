@@ -17,3 +17,8 @@
   hosts: myEC2
   roles:
     - nodejs16
+
+- name: install Terraform
+  hosts: myEC2
+  roles:
+    - terraform

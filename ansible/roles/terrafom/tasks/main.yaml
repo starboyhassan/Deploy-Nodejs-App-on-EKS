@@ -1,0 +1,27 @@
+# install Terraform
+
+    - name: Install wget
+      apt:
+        name: wget
+        state: present
+
+    - name: Import HashiCorp GPG key
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+
+    - name: Add HashiCorp APT repository
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+        state: present
+        filename: hashicorp
+        update_cache: yes
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Terraform
+      apt:
+        name: terraform
+        state: present
