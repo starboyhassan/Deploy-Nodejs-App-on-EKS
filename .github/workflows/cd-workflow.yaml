@@ -12,3 +12,10 @@ jobs:
 
         # Check if the CI workflow was successful
         if: github.event.workflow_run.conclusion == 'success'
+
+        steps:
+        - name: docker pull image
+            # pull the new image form dockerhub and get tag name of this image to update the deployment file with new image tag name
+          run: |
+            docker pull mahmoudhassan9/nodejs-app:${{ github.sha }}
+            export DOCKER_IMAGE_SHA=$(docker inspect --format='{{index .RepoDigests 0}}' mahmoudhassan9/nodejs-app:${{ github.sha }} | awk -F'@' '{print $2}')
